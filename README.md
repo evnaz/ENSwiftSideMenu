@@ -19,4 +19,4 @@ A simple side menu for iOS 8 written in Swift language. Using UIDynamics, UIGest
   sideMenu = SideMenu(sourceView: self.view, menuData: ["UIDynamics", "UIGestures", "UIBlurEffect"])
   sideMenu!.delegate = self
 ```
-5. Customize menu table view cells in `MenuTableViewController.swift`
+Customize menu table view cells in `MenuTableViewController.swift`
