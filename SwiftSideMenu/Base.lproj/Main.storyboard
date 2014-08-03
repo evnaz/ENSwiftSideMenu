@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6162" systemVersion="14A238h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xKr-44-F3h">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6160"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--SwiftSideMenu-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftSideMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,48 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Ly-3z-uvT">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Ly-3z-uvT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fhE-9Q-jbu"/>
+                            <constraint firstAttribute="trailing" secondItem="7Ly-3z-uvT" secondAttribute="trailing" id="mev-cc-V4P"/>
+                            <constraint firstItem="7Ly-3z-uvT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qaZ-In-9k5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Ly-3z-uvT" secondAttribute="bottom" id="zGX-tT-cwe"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="SwiftSideMenu" id="xVG-Tf-vpo">
+                        <barButtonItem key="leftBarButtonItem" title="Toggle" id="sai-mr-tUc">
+                            <connections>
+                                <action selector="toggleSideMenu:" destination="BYZ-38-t0r" id="Izn-G1-zF1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cvg-r3-oiY">
+            <objects>
+                <navigationController id="xKr-44-F3h" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j84-05-NcZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="N0Y-WT-BaU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KaR-FP-sVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-323" y="429"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="image.png" width="1174" height="1220"/>
+    </resources>
 </document>
