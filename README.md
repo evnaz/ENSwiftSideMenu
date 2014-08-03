@@ -8,7 +8,7 @@ A simple side menu for iOS 8 written in Swift language. Using UIDynamics, UIGest
 
 ##Requirements
 * Xcode 6
-* iOS 8 or higher
+* iOS 8
 
 ##How to use
 1. Import `SideMenu.swift` and `MenuTableViewController.swift` to your project folder
