@@ -29,7 +29,7 @@ class MenuTableViewController: UITableViewController {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? UITableViewCell
         
-        if !cell {
+        if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CELL")
             cell!.backgroundColor = UIColor.clearColor()
             cell!.textLabel.textColor = UIColor.darkGrayColor()
