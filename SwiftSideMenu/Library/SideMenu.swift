@@ -14,16 +14,16 @@ import UIKit
     optional func sideMenuWillClose()
 }
 
-class SideMenu : NSObject, MenuTableViewControllerDelegate {
+ class SideMenu : NSObject, MenuTableViewControllerDelegate {
     
-    let menuWidth : CGFloat = 160.0
-    let menuTableViewTopInset : CGFloat = 64.0 // if you use translusent navigation bar
-    let sideMenuContainerView =  UIView()
-    let sideMenuTableViewController = MenuTableViewController()
-    var animator : UIDynamicAnimator!
-    let sourceView : UIView!
-    var delegate : SideMenuDelegate?
-    var isMenuOpen : Bool = false
+    private let menuWidth : CGFloat = 160.0
+    private let menuTableViewTopInset : CGFloat = 64.0 // if you use translusent navigation bar
+    private let sideMenuContainerView =  UIView()
+    private let sideMenuTableViewController = MenuTableViewController()
+    private var animator : UIDynamicAnimator!
+    private let sourceView : UIView!
+    weak var delegate : SideMenuDelegate?
+    private var isMenuOpen : Bool = false
     
     init(sourceView: UIView, menuData:Array<String>) {
         super.init()
@@ -45,7 +45,7 @@ class SideMenu : NSObject, MenuTableViewControllerDelegate {
     }
     
     
-    func setupMenuView() {
+    private func setupMenuView() {
         
         // Configure side menu container
         sideMenuContainerView.frame = CGRectMake(-menuWidth-1.0, sourceView.frame.origin.y, menuWidth, sourceView.frame.size.height)
@@ -80,7 +80,7 @@ class SideMenu : NSObject, MenuTableViewControllerDelegate {
         sideMenuContainerView.addSubview(sideMenuTableViewController.tableView)
     }
     
-    func handleGesture(gesture: UISwipeGestureRecognizer) {
+   private func handleGesture(gesture: UISwipeGestureRecognizer) {
         
         if (gesture.direction == .Left) {
             toggleMenu(false)
@@ -92,7 +92,7 @@ class SideMenu : NSObject, MenuTableViewControllerDelegate {
         }
     }
     
-    func toggleMenu (shouldOpen: Bool) {
+    private func toggleMenu (shouldOpen: Bool) {
         animator.removeAllBehaviors()
         isMenuOpen = shouldOpen
         let gravityDirectionX: CGFloat = (shouldOpen) ? 0.5 : -0.5;
@@ -117,7 +117,7 @@ class SideMenu : NSObject, MenuTableViewControllerDelegate {
         animator.addBehavior(menuViewBehavior)
     }
     
-    func menuControllerDidSelectRow(indexPath:NSIndexPath) {  
+    func menuControllerDidSelectRow(indexPath:NSIndexPath) {
          delegate?.sideMenuDidSelectItemAtIndex(indexPath.row)
     }
     
@@ -128,5 +128,9 @@ class SideMenu : NSObject, MenuTableViewControllerDelegate {
         else {
             toggleMenu(true)
         }
+    }
+    
+    func selectRowAtIndexPath(indexPath: NSIndexPath!, animated: Bool!, scrollPosition: UITableViewScrollPosition!) {
+        sideMenuTableViewController.tableView.selectRowAtIndexPath(indexPath, animated: animated, scrollPosition: scrollPosition)
     }
 }

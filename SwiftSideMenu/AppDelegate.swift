@@ -13,9 +13,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
 
-
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        // Initial center controller.
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        let controller:UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController1") as UIViewController
+        
+        var menuNavigationHelper: SideMenuNavigationHelper = SideMenuNavigationHelper()
+        
+        // Setup the Side Menu Controller.
+        var menuViewController: SideMenuViewController = SideMenuViewController(menuData: SideMenuNavigationHelper.mennuData(), centerController: controller)
+        menuViewController.sideMenuProtocol = menuNavigationHelper
+        var navigationController: UINavigationController = UINavigationController(rootViewController: menuViewController)
+        self.window!.rootViewController = navigationController
         return true
     }
 
