@@ -59,10 +59,12 @@ class SideMenu : NSObject, MenuTableViewControllerDelegate {
 
         sourceView.addSubview(sideMenuContainerView)
         
-        // Add blur view
-        var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
-        visualEffectView.frame = sideMenuContainerView.bounds
-        sideMenuContainerView.addSubview(visualEffectView)
+        if (NSClassFromString("UIVisualEffectView") != nil) {
+            // Add blur view
+            var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+            visualEffectView.frame = sideMenuContainerView.bounds
+            sideMenuContainerView.addSubview(visualEffectView)
+        }
         
         // Configure side menu table view
         sideMenuTableViewController.delegate = self
