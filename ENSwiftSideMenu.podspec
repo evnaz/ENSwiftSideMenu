@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.platform = :ios, '7.0'
   s.source   = { :git => "https://github.com/evnaz/ENSwiftSideMenu.git", :tag => "0.0.1" }
 
-  s.source_files   = "Library"
+  s.source_files   = "Library/*"
 
   s.ios.frameworks = 'QuartzCore'
 
