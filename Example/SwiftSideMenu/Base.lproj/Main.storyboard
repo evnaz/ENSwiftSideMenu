@@ -3,7 +3,6 @@
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--SwiftSideMenu-->
@@ -61,17 +60,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0re-oY-tCL">
-                                <rect key="frame" x="16" y="331" width="568" height="269"/>
+                                <rect key="frame" x="0.0" y="331" width="600" height="269"/>
                                 <color key="backgroundColor" red="0.95239502333016968" green="1" blue="0.22673820174917236" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1447979539" green="1" blue="0.66376489859999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0re-oY-tCL" firstAttribute="top" secondItem="c9j-pg-AvJ" secondAttribute="bottom" constant="20" id="DFk-ij-CZi"/>
-                            <constraint firstItem="0re-oY-tCL" firstAttribute="leading" secondItem="58r-My-kH9" secondAttribute="leadingMargin" id="FGu-zT-u74"/>
+                            <constraint firstItem="0re-oY-tCL" firstAttribute="leading" secondItem="58r-My-kH9" secondAttribute="leading" id="E7b-xC-Cr3"/>
                             <constraint firstAttribute="centerX" secondItem="c9j-pg-AvJ" secondAttribute="centerX" id="Ghg-G2-qvS"/>
-                            <constraint firstAttribute="centerX" secondItem="0re-oY-tCL" secondAttribute="centerX" id="HVj-Iw-DGd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0re-oY-tCL" secondAttribute="trailing" id="PPQ-Co-rbU"/>
+                            <constraint firstAttribute="trailing" secondItem="0re-oY-tCL" secondAttribute="trailing" id="Uf8-sD-PCq"/>
                             <constraint firstItem="hT2-oc-fas" firstAttribute="top" secondItem="0re-oY-tCL" secondAttribute="bottom" id="Zym-BY-4pm"/>
                             <constraint firstAttribute="centerY" secondItem="c9j-pg-AvJ" secondAttribute="centerY" id="sEd-le-mVy"/>
                         </constraints>
