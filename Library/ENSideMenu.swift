@@ -15,7 +15,6 @@ import UIKit
 
 @objc protocol ENSideMenuProtocol {
     var sideMenu : ENSideMenu? { get }
-    var sideMenuWidth : NSNumber? { get set }
     func setContentViewController(contentViewController: UIViewController)
 }
 
@@ -58,7 +57,7 @@ extension UIViewController {
     }
     
     internal func topMostController () -> ENSideMenuProtocol? {
-        var topController : UIViewController? = UIApplication.sharedApplication().keyWindow.rootViewController
+        var topController : UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController
         while (topController?.presentedViewController is ENSideMenuProtocol) {
             topController = topController?.presentedViewController;
         }

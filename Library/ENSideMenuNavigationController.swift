@@ -13,11 +13,6 @@ class ENSideMenuNavigationController: UINavigationController, ENSideMenuProtocol
     internal var sideMenu : ENSideMenu?
     internal var sideMenuAnimationType : ENSideMenuAnimation = .Default
     
-    internal var sideMenuWidth : NSNumber? {
-        didSet {
-            sideMenu?.menuWidth = sideMenuWidth!
-        }
-    }
     
     // MARK: - Life cycle
     override func viewDidLoad() {
