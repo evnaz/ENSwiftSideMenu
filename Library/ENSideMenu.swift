@@ -138,7 +138,7 @@ class ENSideMenu : NSObject {
         let boundaryPointX: CGFloat = (shouldOpen) ? menuWidth : -menuWidth-1.0;
         
         let gravityBehavior = UIGravityBehavior(items: [sideMenuContainerView])
-        gravityBehavior.gravityDirection = CGVectorMake(gravityDirectionX, 0.0)
+        gravityBehavior!.gravityDirection = CGVectorMake(gravityDirectionX, 0.0)
         animator.addBehavior(gravityBehavior)
         
         let collisionBehavior = UICollisionBehavior(items: [sideMenuContainerView])
@@ -151,7 +151,7 @@ class ENSideMenu : NSObject {
         animator.addBehavior(pushBehavior)
         
         let menuViewBehavior = UIDynamicItemBehavior(items: [sideMenuContainerView])
-        menuViewBehavior.elasticity = 0.3
+        menuViewBehavior!.elasticity = 0.3
         animator.addBehavior(menuViewBehavior)
     }
     
