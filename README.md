@@ -4,7 +4,7 @@ ENSwiftSideMenu
 A simple side menu for iOS 7/8 written in Swift. Using the UIDynamic framework, UIGestures and UIBlurEffect.
 
 ##Demo
-![](https://raw.githubusercontent.com/evnaz/ENSwiftSideMenu/developer/side_menu.gif)
+![](https://raw.githubusercontent.com/evnaz/ENSwiftSideMenu/master/side_menu.gif)
 
 ##Requirements
 * Xcode 6
