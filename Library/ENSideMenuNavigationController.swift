@@ -26,7 +26,7 @@ class ENSideMenuNavigationController: UINavigationController, ENSideMenuProtocol
             self.viewControllers = [contentViewController!]
         }
 
-        sideMenu = ENSideMenu(sourceView: self.view, menuTableViewController: menuTableViewController)
+        sideMenu = ENSideMenu(sourceView: self.view, menuTableViewController: menuTableViewController, menuPosition:.Left)
         view.bringSubviewToFront(navigationBar)
     }
 
