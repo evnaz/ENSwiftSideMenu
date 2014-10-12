@@ -19,7 +19,7 @@ A simple side menu for iOS 7/8 written in Swift. Using the UIDynamic framework, 
   override func viewDidLoad() {
         super.viewDidLoad()
         
-        sideMenu = ENSideMenu(sourceView: self.view, menuTableViewController: MyMenuTableViewController())
+        sideMenu = ENSideMenu(sourceView: self.view, menuTableViewController: MyMenuTableViewController(), menuPosition:.Left)
         
         // make navigation bar showing over side menu
         view.bringSubviewToFront(navigationBar)
