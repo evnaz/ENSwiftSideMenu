@@ -62,7 +62,7 @@ extension UIViewController {
     }
     
     internal func topMostController () -> ENSideMenuProtocol? {
-        var topController : UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController
+        var topController : UIViewController? = UIApplication.sharedApplication().keyWindow.rootViewController
         while (topController?.presentedViewController is ENSideMenuProtocol) {
             topController = topController?.presentedViewController;
         }
@@ -182,7 +182,7 @@ class ENSideMenu : NSObject {
             }
             
             let gravityBehavior = UIGravityBehavior(items: [sideMenuContainerView])
-            gravityBehavior!.gravityDirection = CGVectorMake(gravityDirectionX,  0)
+            gravityBehavior.gravityDirection = CGVectorMake(gravityDirectionX,  0)
             animator.addBehavior(gravityBehavior)
             
             let collisionBehavior = UICollisionBehavior(items: [sideMenuContainerView])
@@ -195,7 +195,7 @@ class ENSideMenu : NSObject {
             animator.addBehavior(pushBehavior)
             
             let menuViewBehavior = UIDynamicItemBehavior(items: [sideMenuContainerView])
-            menuViewBehavior!.elasticity = 0.25
+            menuViewBehavior.elasticity = 0.25
             animator.addBehavior(menuViewBehavior)
             
         }
