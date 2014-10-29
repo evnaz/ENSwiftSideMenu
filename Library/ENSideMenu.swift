@@ -124,15 +124,24 @@ class ENSideMenu : NSObject {
         sideMenuContainerView.addSubview(self.menuTableViewController.tableView)
     }
     
+    func updateFrame() {
+        let menuFrame = CGRectMake(
+            (menuPosition == .Left) ?
+                isMenuOpen ? 0 : -menuWidth-1.0 :
+                isMenuOpen ? sourceView.frame.size.width - menuWidth : sourceView.frame.size.width+1.0,
+            sourceView.frame.origin.y,
+            menuWidth,
+            sourceView.frame.size.height
+        )
+        
+        sideMenuContainerView.frame = menuFrame
+    }
+
     private func setupMenuView() {
         
         // Configure side menu container
-        let menuFrame = CGRectMake((menuPosition == .Left) ? -menuWidth-1.0 : sourceView.frame.size.width+1.0,
-                                    sourceView.frame.origin.y,
-                                    menuWidth,
-                                    sourceView.frame.size.height)
-        
-        sideMenuContainerView.frame = menuFrame
+        updateFrame()
+
         sideMenuContainerView.backgroundColor = UIColor.clearColor()
         sideMenuContainerView.clipsToBounds = false
         sideMenuContainerView.layer.masksToBounds = false;
