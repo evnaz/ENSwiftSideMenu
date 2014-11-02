@@ -211,7 +211,7 @@ class ENSideMenu : NSObject {
         else {
             var destFrame :CGRect
             if (menuPosition == .Left) {
-                destFrame = CGRectMake((shouldOpen) ? -2.0 : menuWidth, 0, menuWidth, sideMenuContainerView.frame.size.height)
+                destFrame = CGRectMake((shouldOpen) ? -2.0 : -menuWidth, 0, menuWidth, sideMenuContainerView.frame.size.height)
             }
             else {
                 destFrame = CGRectMake((shouldOpen) ? sourceView.frame.size.width-menuWidth : sourceView.frame.size.width+2.0,
