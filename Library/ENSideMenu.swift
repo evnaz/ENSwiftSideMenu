@@ -166,6 +166,7 @@ class ENSideMenu : NSObject {
     
     private func toggleMenu (shouldOpen: Bool) {
         isMenuOpen = shouldOpen
+        sourceView.bringSubviewToFront(sideMenuContainerView)
         if (bouncingEnabled) {
             
             animator.removeAllBehaviors()
