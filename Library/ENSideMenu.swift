@@ -226,20 +226,29 @@ class ENSideMenu : NSObject {
             })
         }
         
+        if (shouldOpen) {
+            delegate?.sideMenuWillOpen?()
+        } else {
+            delegate?.sideMenuWillClose?()
+        }
     }
     
     internal func handleGesture(gesture: UISwipeGestureRecognizer) {
         
         updateSideMenuApperanceIfNeeded()
-        if (gesture.direction == .Left) {
-            toggleMenu(menuPosition == .Left ? false : true)
-            delegate?.sideMenuWillClose?()
-        }
-        else{
-            
-            toggleMenu(menuPosition == .Left ? true : false)
-            delegate?.sideMenuWillOpen?()
-        }
+
+        toggleMenu((self.menuPosition == .Right && gesture.direction == .Left)
+                || (self.menuPosition == .Left && gesture.direction == .Right))
+    
+//        if (gesture.direction == .Left) {
+//            toggleMenu(menuPosition == .Left ? false : true)
+//            delegate?.sideMenuWillClose?()
+//        }
+//        else{
+//            
+//            toggleMenu(menuPosition == .Left ? true : false)
+//            delegate?.sideMenuWillOpen?()
+//        }
     }
     
     private func updateSideMenuApperanceIfNeeded () {
