@@ -8,27 +8,27 @@
 
 import UIKit
 
-@objc protocol ENSideMenuDelegate {
+@objc public protocol ENSideMenuDelegate {
     optional func sideMenuWillOpen()
     optional func sideMenuWillClose()
 }
 
-@objc protocol ENSideMenuProtocol {
+@objc public protocol ENSideMenuProtocol {
     var sideMenu : ENSideMenu? { get }
     func setContentViewController(contentViewController: UIViewController)
 }
 
-enum ENSideMenuAnimation : Int {
+public enum ENSideMenuAnimation : Int {
     case None
     case Default
 }
 
-enum ENSideMenuPosition : Int {
+public enum ENSideMenuPosition : Int {
     case Left
     case Right
 }
 
-extension UIViewController {
+public extension UIViewController {
     
     public func toggleSideMenuView () {
         sideMenuController()?.sideMenu?.toggleMenu()
@@ -71,25 +71,25 @@ extension UIViewController {
     }
 }
 
-class ENSideMenu : NSObject {
+public class ENSideMenu : NSObject {
     
-    internal var menuWidth : CGFloat = 160.0 {
+    public var menuWidth : CGFloat = 160.0 {
         didSet {
             needUpdateApperance = true
             updateFrame()
         }
     }
     private let menuPosition:ENSideMenuPosition = .Left
-    var bouncingEnabled :Bool = true
+    public var bouncingEnabled :Bool = true
     private let sideMenuContainerView =  UIView()
     private var menuTableViewController : UITableViewController!
     private var animator : UIDynamicAnimator!
     private let sourceView : UIView!
     private var needUpdateApperance : Bool = false
-    weak var delegate : ENSideMenuDelegate?
+    public weak var delegate : ENSideMenuDelegate?
     private var isMenuOpen : Bool = false
     
-    init(sourceView: UIView, menuPosition: ENSideMenuPosition) {
+    public init(sourceView: UIView, menuPosition: ENSideMenuPosition) {
         super.init()
         self.sourceView = sourceView
         self.menuPosition = menuPosition
@@ -117,7 +117,7 @@ class ENSideMenu : NSObject {
         
     }
 
-    convenience init(sourceView: UIView, menuTableViewController: UITableViewController, menuPosition: ENSideMenuPosition) {
+    public convenience init(sourceView: UIView, menuTableViewController: UITableViewController, menuPosition: ENSideMenuPosition) {
         self.init(sourceView: sourceView, menuPosition: menuPosition)
         self.menuTableViewController = menuTableViewController
         self.menuTableViewController.tableView.frame = sideMenuContainerView.bounds
@@ -125,7 +125,7 @@ class ENSideMenu : NSObject {
         sideMenuContainerView.addSubview(self.menuTableViewController.tableView)
     }
     
-    func updateFrame() {
+    private func updateFrame() {
         let menuFrame = CGRectMake(
             (menuPosition == .Left) ?
                 isMenuOpen ? 0 : -menuWidth-1.0 :
@@ -235,9 +235,6 @@ class ENSideMenu : NSObject {
     }
     
     internal func handleGesture(gesture: UISwipeGestureRecognizer) {
-        
-        
-
         toggleMenu((self.menuPosition == .Right && gesture.direction == .Left)
                 || (self.menuPosition == .Left && gesture.direction == .Right))
     }
@@ -253,7 +250,7 @@ class ENSideMenu : NSObject {
         }
     }
     
-    internal func toggleMenu () {
+    public func toggleMenu () {
         if (isMenuOpen) {
             toggleMenu(false)
         }
@@ -263,13 +260,13 @@ class ENSideMenu : NSObject {
         }
     }
     
-    internal func showSideMenu () {
+    public func showSideMenu () {
         if (!isMenuOpen) {
             toggleMenu(true)
         }
     }
     
-    internal func hideSideMenu () {
+    public func hideSideMenu () {
         if (isMenuOpen) {
             toggleMenu(false)
         }
