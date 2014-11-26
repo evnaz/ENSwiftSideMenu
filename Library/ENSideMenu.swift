@@ -76,6 +76,7 @@ class ENSideMenu : NSObject {
     internal var menuWidth : CGFloat = 160.0 {
         didSet {
             needUpdateApperance = true
+            updateFrame()
         }
     }
     private let menuPosition:ENSideMenuPosition = .Left
@@ -165,6 +166,7 @@ class ENSideMenu : NSObject {
     }
     
     private func toggleMenu (shouldOpen: Bool) {
+        updateSideMenuApperanceIfNeeded()
         isMenuOpen = shouldOpen
         sourceView.bringSubviewToFront(sideMenuContainerView)
         if (bouncingEnabled) {
@@ -235,20 +237,10 @@ class ENSideMenu : NSObject {
     
     internal func handleGesture(gesture: UISwipeGestureRecognizer) {
         
-        updateSideMenuApperanceIfNeeded()
+        
 
         toggleMenu((self.menuPosition == .Right && gesture.direction == .Left)
                 || (self.menuPosition == .Left && gesture.direction == .Right))
-    
-//        if (gesture.direction == .Left) {
-//            toggleMenu(menuPosition == .Left ? false : true)
-//            delegate?.sideMenuWillClose?()
-//        }
-//        else{
-//            
-//            toggleMenu(menuPosition == .Left ? true : false)
-//            delegate?.sideMenuWillOpen?()
-//        }
     }
     
     private func updateSideMenuApperanceIfNeeded () {
