@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
 
   s.source_files   = "Library/*"
 
-  s.ios.frameworks = 'QuartzCore'
+  #s.ios.frameworks = 'QuartzCore'
 
 end
