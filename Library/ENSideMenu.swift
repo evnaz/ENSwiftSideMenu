@@ -43,7 +43,7 @@ public extension UIViewController {
         sideMenuController()?.sideMenu?.showSideMenu()
     }
     
-    internal func sideMenuController () -> ENSideMenuProtocol? {
+    public func sideMenuController () -> ENSideMenuProtocol? {
         var iteration : UIViewController? = self.parentViewController
         if (iteration == nil) {
             return topMostController()
