@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xKr-44-F3h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C106a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xKr-44-F3h">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--SwiftSideMenu-->
@@ -44,7 +44,7 @@
         <!--ViewController 2-->
         <scene sceneID="ZaE-bk-iww">
             <objects>
-                <viewController storyboardIdentifier="ViewController2" title="ViewController 2" id="gMT-kX-3ov" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController2" title="ViewController 2" id="gMT-kX-3ov" customClass="ViewController2" customModule="SwiftSideMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pS4-Ko-kwh"/>
                         <viewControllerLayoutGuide type="bottom" id="hT2-oc-fas"/>
@@ -53,24 +53,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ViewController 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9j-pg-AvJ">
-                                <rect key="frame" x="237" y="290" width="126" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9j-pg-AvJ">
+                                <rect key="frame" x="237.5" y="280" width="125.5" height="41"/>
+                                <string key="text">ViewController 2
+Menu disabled</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0re-oY-tCL">
-                                <rect key="frame" x="0.0" y="331" width="600" height="269"/>
-                                <color key="backgroundColor" red="0.95239502333016968" green="1" blue="0.22673820174917236" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1447979539" green="1" blue="0.66376489859999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="0re-oY-tCL" firstAttribute="top" secondItem="c9j-pg-AvJ" secondAttribute="bottom" constant="20" id="DFk-ij-CZi"/>
-                            <constraint firstItem="0re-oY-tCL" firstAttribute="leading" secondItem="58r-My-kH9" secondAttribute="leading" id="E7b-xC-Cr3"/>
                             <constraint firstAttribute="centerX" secondItem="c9j-pg-AvJ" secondAttribute="centerX" id="Ghg-G2-qvS"/>
-                            <constraint firstAttribute="trailing" secondItem="0re-oY-tCL" secondAttribute="trailing" id="Uf8-sD-PCq"/>
-                            <constraint firstItem="hT2-oc-fas" firstAttribute="top" secondItem="0re-oY-tCL" secondAttribute="bottom" id="Zym-BY-4pm"/>
                             <constraint firstAttribute="centerY" secondItem="c9j-pg-AvJ" secondAttribute="centerY" id="sEd-le-mVy"/>
                         </constraints>
                     </view>

@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ENSideMenuDelegate {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.sideMenuController()?.sideMenu?.delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,5 +26,18 @@ class ViewController: UIViewController {
         toggleSideMenuView()
     }
     
+    // MARK: - ENSideMenu Delegate
+    func sideMenuWillOpen() {
+        println("sideMenuWillOpen")
+    }
+    
+    func sideMenuWillClose() {
+        println("sideMenuWillClose")
+    }
+    
+    func sideMenuShouldOpenSideMenu() -> Bool {
+        println("sideMenuShouldOpenSideMenu")
+        return true;
+    }
 }
 

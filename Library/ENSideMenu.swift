@@ -11,6 +11,7 @@ import UIKit
 @objc public protocol ENSideMenuDelegate {
     optional func sideMenuWillOpen()
     optional func sideMenuWillClose()
+    optional func sideMenuShouldOpenSideMenu () -> Bool
 }
 
 @objc public protocol ENSideMenuProtocol {
@@ -166,6 +167,9 @@ public class ENSideMenu : NSObject {
     }
     
     private func toggleMenu (shouldOpen: Bool) {
+        if (shouldOpen && delegate?.sideMenuShouldOpenSideMenu?() == false) {
+            return;
+        }
         updateSideMenuApperanceIfNeeded()
         isMenuOpen = shouldOpen
         if (bouncingEnabled) {

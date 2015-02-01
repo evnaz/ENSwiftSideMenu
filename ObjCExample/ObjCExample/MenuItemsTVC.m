@@ -14,6 +14,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setContentInset:UIEdgeInsetsMake(64.f, 0, 0, 0)];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark - Table view data source
@@ -38,7 +39,6 @@
         selectionView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3f];
         [cell setSelectedBackgroundView:selectionView];
     }
-
     cell.textLabel.text = [NSString stringWithFormat:@"Row %ld", (long)indexPath.row];
     
     return cell;
