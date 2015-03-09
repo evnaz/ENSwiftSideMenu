@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SwiftSideMenu.xcodeproj">
+      location = "self:ObjCExample.xcodeproj">
    </FileRef>
 </Workspace>
