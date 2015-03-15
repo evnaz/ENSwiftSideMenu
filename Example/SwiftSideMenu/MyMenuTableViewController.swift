@@ -78,16 +78,16 @@ class MyMenuTableViewController: UITableViewController {
         var destViewController : UIViewController
         switch (indexPath.row) {
         case 0:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController1") as UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController1") as! UIViewController
             break
         case 1:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController2") as UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController2") as! UIViewController
             break
         case 2:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController3") as UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController3")as! UIViewController
             break
         default:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController4") as UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController4") as! UIViewController
             break
         }
         sideMenuController()?.setContentViewController(destViewController)
