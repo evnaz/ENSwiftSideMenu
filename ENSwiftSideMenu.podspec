@@ -8,15 +8,15 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "ENSideMenu"
-  s.version      = "0.0.5"
+  s.name         = "ENSwiftSideMenu"
+  s.version      = "0.0.6"
   s.summary      = "A simple side menu for iOS 7/8"
   s.homepage     = "https://github.com/evnaz/ENSwiftSideMenu"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "Evgeny Nazarov" => "e.nazarov@yahoo.com" }
   s.requires_arc      = true
   s.platform = :ios, "7.0"
-  s.source   = { :git => "https://github.com/evnaz/ENSwiftSideMenu.git", :tag => "v0.0.5" }
+  s.source   = { :git => "https://github.com/evnaz/ENSwiftSideMenu.git", :tag => "v0.0.6" }
   s.source_files      = "Library/ENSideMenu.swift", "Library/ENSideMenuNavigationController.swift"
 
 end
