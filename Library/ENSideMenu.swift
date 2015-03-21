@@ -44,6 +44,11 @@ public extension UIViewController {
         sideMenuController()?.sideMenu?.showSideMenu()
     }
     
+    public func isSideMenuOpen () -> Bool {
+        let sieMenuOpen = self.sideMenuController()?.sideMenu?.isMenuOpen
+        return sieMenuOpen!
+    }
+    
     public func sideMenuController () -> ENSideMenuProtocol? {
         var iteration : UIViewController? = self.parentViewController
         if (iteration == nil) {
@@ -88,7 +93,7 @@ public class ENSideMenu : NSObject {
     private var sourceView : UIView!
     private var needUpdateApperance : Bool = false
     public weak var delegate : ENSideMenuDelegate?
-    private var isMenuOpen : Bool = false
+    private(set) var isMenuOpen : Bool = false
     
     public init(sourceView: UIView, menuPosition: ENSideMenuPosition) {
         super.init()
