@@ -77,7 +77,7 @@ public extension UIViewController {
     }
 }
 
-public class ENSideMenu : NSObject {
+public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     
     public var menuWidth : CGFloat = 160.0 {
         didSet {
@@ -94,6 +94,8 @@ public class ENSideMenu : NSObject {
     private var needUpdateApperance : Bool = false
     public weak var delegate : ENSideMenuDelegate?
     private(set) var isMenuOpen : Bool = false
+    public var allowLeftSwipe : Bool = true
+    public var allowRightSwipe : Bool = true
     
     public init(sourceView: UIView, menuPosition: ENSideMenuPosition) {
         super.init()
@@ -105,11 +107,12 @@ public class ENSideMenu : NSObject {
         
         // Add right swipe gesture recognizer
         let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleGesture:")
+        rightSwipeGestureRecognizer.delegate = self
         rightSwipeGestureRecognizer.direction =  UISwipeGestureRecognizerDirection.Right
-        sourceView.addGestureRecognizer(rightSwipeGestureRecognizer)
         
         // Add left swipe gesture recognizer
         let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleGesture:")
+        leftSwipeGestureRecognizer.delegate = self
         leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
         
         if (menuPosition == .Left) {
@@ -241,6 +244,24 @@ public class ENSideMenu : NSObject {
         } else {
             delegate?.sideMenuWillClose?()
         }
+    }
+    
+    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer is UISwipeGestureRecognizer {
+            let swipeGestureRecognizer = gestureRecognizer as UISwipeGestureRecognizer
+            if !self.allowLeftSwipe {
+                if swipeGestureRecognizer.direction == .Left {
+                    return false
+                }
+            }
+            
+            if !self.allowRightSwipe {
+                if swipeGestureRecognizer.direction == .Right {
+                    return false
+                }
+            }
+        }
+        return true
     }
     
     internal func handleGesture(gesture: UISwipeGestureRecognizer) {
