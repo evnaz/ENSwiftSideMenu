@@ -13,7 +13,7 @@ class ViewController: UIViewController, ENSideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sideMenuController()?.sideMenu?.delegate = self;
+        self.sideMenuController()?.sideMenu?.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,7 +37,7 @@ class ViewController: UIViewController, ENSideMenuDelegate {
     
     func sideMenuShouldOpenSideMenu() -> Bool {
         println("sideMenuShouldOpenSideMenu")
-        return true;
+        return true
     }
 }
 
