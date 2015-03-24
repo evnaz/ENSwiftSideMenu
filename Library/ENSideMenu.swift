@@ -58,9 +58,9 @@ public extension UIViewController {
             if (iteration is ENSideMenuProtocol) {
                 return iteration as? ENSideMenuProtocol
             } else if (iteration?.parentViewController != nil && iteration?.parentViewController != iteration) {
-                iteration = iteration!.parentViewController;
+                iteration = iteration!.parentViewController
             } else {
-                iteration = nil;
+                iteration = nil
             }
         } while (iteration != nil)
         
@@ -70,7 +70,7 @@ public extension UIViewController {
     internal func topMostController () -> ENSideMenuProtocol? {
         var topController : UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController
         while (topController?.presentedViewController is ENSideMenuProtocol) {
-            topController = topController?.presentedViewController;
+            topController = topController?.presentedViewController
         }
         
         return topController as? ENSideMenuProtocol
@@ -154,10 +154,10 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
 
         sideMenuContainerView.backgroundColor = UIColor.clearColor()
         sideMenuContainerView.clipsToBounds = false
-        sideMenuContainerView.layer.masksToBounds = false;
-        sideMenuContainerView.layer.shadowOffset = (menuPosition == .Left) ? CGSizeMake(1.0, 1.0) : CGSizeMake(-1.0, -1.0);
-        sideMenuContainerView.layer.shadowRadius = 1.0;
-        sideMenuContainerView.layer.shadowOpacity = 0.125;
+        sideMenuContainerView.layer.masksToBounds = false
+        sideMenuContainerView.layer.shadowOffset = (menuPosition == .Left) ? CGSizeMake(1.0, 1.0) : CGSizeMake(-1.0, -1.0)
+        sideMenuContainerView.layer.shadowRadius = 1.0
+        sideMenuContainerView.layer.shadowOpacity = 0.125
         sideMenuContainerView.layer.shadowPath = UIBezierPath(rect: sideMenuContainerView.bounds).CGPath
         
         sourceView.addSubview(sideMenuContainerView)
@@ -176,7 +176,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     
     private func toggleMenu (shouldOpen: Bool) {
         if (shouldOpen && delegate?.sideMenuShouldOpenSideMenu?() == false) {
-            return;
+            return
         }
         updateSideMenuApperanceIfNeeded()
         isMenuOpen = shouldOpen

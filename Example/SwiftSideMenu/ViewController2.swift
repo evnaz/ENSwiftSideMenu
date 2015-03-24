@@ -13,7 +13,7 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Move next line to viewWillAppear functon if you store your view controllers
-        self.sideMenuController()?.sideMenu?.delegate = self;
+        self.sideMenuController()?.sideMenu?.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -33,7 +33,7 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
     
     func sideMenuShouldOpenSideMenu() -> Bool {
         println("sideMenuShouldOpenSideMenu")
-        return false;
+        return false
     }
 
     /*
