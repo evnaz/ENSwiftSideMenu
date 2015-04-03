@@ -7,8 +7,8 @@ A simple side menu for iOS 7/8 written in Swift. Using the UIDynamic framework, 
 ![](https://raw.githubusercontent.com/evnaz/ENSwiftSideMenu/master/side_menu.gif)
 
 ##Requirements
-* Xcode 6
-* iOS 7 or higher
+* Xcode 6.3
+* iOS 8 or higher
 
 ##How to use
 1. Import `ENSideMenu.swift` and `ENSideMenuNavigationController.swift` to your project folder
