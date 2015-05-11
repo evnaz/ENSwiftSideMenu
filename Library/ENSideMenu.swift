@@ -49,6 +49,17 @@ public extension UIViewController {
         return sieMenuOpen!
     }
     
+    /**
+     * You must call this method from viewDidLayoutSubviews in your content view controlers so it fixes size and position of the side menu when the screen
+     * rotates.
+     * A convenient way to do it might be creating a subclass of UIViewController that does precisely that and then subclassing your view controllers from it.
+     */
+    func fixSideMenuSize() {
+        if let navController = self.navigationController as? ENSideMenuNavigationController {
+            navController.sideMenu?.updateFrame()
+        }
+    }
+    
     public func sideMenuController () -> ENSideMenuProtocol? {
         var iteration : UIViewController? = self.parentViewController
         if (iteration == nil) {
@@ -87,8 +98,9 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     }
     private var menuPosition:ENSideMenuPosition = .Left
     public var bouncingEnabled :Bool = true
+    public var animationDuration = 0.4
     private let sideMenuContainerView =  UIView()
-    private var menuTableViewController : UITableViewController!
+    private var menuViewController : UIViewController!
     private var animator : UIDynamicAnimator!
     private var sourceView : UIView!
     private var needUpdateApperance : Bool = false
@@ -126,27 +138,52 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         
     }
 
-    public convenience init(sourceView: UIView, menuTableViewController: UITableViewController, menuPosition: ENSideMenuPosition) {
+    public convenience init(sourceView: UIView, menuViewController: UIViewController, menuPosition: ENSideMenuPosition) {
         self.init(sourceView: sourceView, menuPosition: menuPosition)
-        self.menuTableViewController = menuTableViewController
-        self.menuTableViewController.tableView.frame = sideMenuContainerView.bounds
-        self.menuTableViewController.tableView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
-        sideMenuContainerView.addSubview(self.menuTableViewController.tableView)
+        self.menuViewController = menuViewController
+        self.menuViewController.view.frame = sideMenuContainerView.bounds
+        self.menuViewController.view.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        sideMenuContainerView.addSubview(self.menuViewController.view)
     }
-    
-    private func updateFrame() {
+
+    public convenience init(sourceView: UIView, view: UIView, menuPosition: ENSideMenuPosition) {
+        self.init(sourceView: sourceView, menuPosition: menuPosition)
+        view.frame = sideMenuContainerView.bounds
+        view.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        sideMenuContainerView.addSubview(view)
+    }
+
+    /**
+     * Do not make this function private, it must be called from your own UIViewControllers (using the fixSideMenuSize function of the extension).
+     */
+    func updateFrame() {
+        var width:CGFloat
+        var height:CGFloat
+        (width, height) = adjustFrameDimensions( sourceView.frame.size.width, height: sourceView.frame.size.height)
         let menuFrame = CGRectMake(
             (menuPosition == .Left) ?
                 isMenuOpen ? 0 : -menuWidth-1.0 :
-                isMenuOpen ? sourceView.frame.size.width - menuWidth : sourceView.frame.size.width+1.0,
+                isMenuOpen ? width - menuWidth : width+1.0,
             sourceView.frame.origin.y,
             menuWidth,
-            sourceView.frame.size.height
+            height
         )
-        
         sideMenuContainerView.frame = menuFrame
     }
-
+    
+    private func adjustFrameDimensions( width: CGFloat, height: CGFloat ) -> (CGFloat,CGFloat) {
+        if floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 &&
+            (UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.LandscapeRight ||
+                UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.LandscapeLeft) {
+                    // iOS 7.1 or lower and landscape mode -> interchange width and height
+                    return (height, width)
+        }
+        else {
+            return (width, height)
+        }
+        
+    }
+    
     private func setupMenuView() {
         
         // Configure side menu container
@@ -180,6 +217,9 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         }
         updateSideMenuApperanceIfNeeded()
         isMenuOpen = shouldOpen
+        var width:CGFloat
+        var height:CGFloat
+        (width, height) = adjustFrameDimensions( sourceView.frame.size.width, height: sourceView.frame.size.height)
         if (bouncingEnabled) {
             
             animator.removeAllBehaviors()
@@ -200,7 +240,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
                 // Right side menu
                 gravityDirectionX = (shouldOpen) ? -1 : 1
                 pushMagnitude = (shouldOpen) ? -20 : 20
-                boundaryPointX = (shouldOpen) ? sourceView.frame.size.width-menuWidth : sourceView.frame.size.width+menuWidth+2
+                boundaryPointX = (shouldOpen) ? width-menuWidth : width+menuWidth+2
                 boundaryPointY =  -20
             }
             
@@ -210,7 +250,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             
             let collisionBehavior = UICollisionBehavior(items: [sideMenuContainerView])
             collisionBehavior.addBoundaryWithIdentifier("menuBoundary", fromPoint: CGPointMake(boundaryPointX, boundaryPointY),
-                toPoint: CGPointMake(boundaryPointX, sourceView.frame.size.height))
+                toPoint: CGPointMake(boundaryPointX, height))
             animator.addBehavior(collisionBehavior)
             
             let pushBehavior = UIPushBehavior(items: [sideMenuContainerView], mode: UIPushBehaviorMode.Instantaneous)
@@ -225,16 +265,16 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         else {
             var destFrame :CGRect
             if (menuPosition == .Left) {
-                destFrame = CGRectMake((shouldOpen) ? -2.0 : -menuWidth, 0, menuWidth, sideMenuContainerView.frame.size.height)
+                destFrame = CGRectMake((shouldOpen) ? -2.0 : -menuWidth, 0, menuWidth, height)
             }
             else {
-                destFrame = CGRectMake((shouldOpen) ? sourceView.frame.size.width-menuWidth : sourceView.frame.size.width+2.0,
+                destFrame = CGRectMake((shouldOpen) ? width-menuWidth : width+2.0,
                                         0,
                                         menuWidth,
-                                        sideMenuContainerView.frame.size.height)
+                                        height)
             }
             
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
+            UIView.animateWithDuration(animationDuration, animations: { () -> Void in
                 self.sideMenuContainerView.frame = destFrame
             })
         }
