@@ -1,7 +1,7 @@
 ENSwiftSideMenu
 ===============
 
-A simple side menu for iOS 7/8 written in Swift. Using the UIDynamic framework, UIGestures and UIBlurEffect.
+A simple side menu for iOS 8 written in Swift. Using the UIDynamic framework, UIGestures and UIBlurEffect.
 
 ##Demo
 ![](https://raw.githubusercontent.com/evnaz/ENSwiftSideMenu/master/side_menu.gif)
@@ -13,15 +13,15 @@ A simple side menu for iOS 7/8 written in Swift. Using the UIDynamic framework, 
 ##How to use
 1. Import `ENSideMenu.swift` and `ENSideMenuNavigationController.swift` to your project folder
 2. Create a root UINavigationController subclassing from ENSideMenuNavigationController
-3. Create a UITableViewController for menu table
-4. Initilize the menu with source view and menu table view controller:
+3. Create a UIViewController for side menu
+4. Initilize the menu view with a source view and menu view controller:
 ```swift
   override func viewDidLoad() {
         super.viewDidLoad()
         
-        sideMenu = ENSideMenu(sourceView: self.view, menuTableViewController: MyMenuTableViewController(), menuPosition:.Left)
+        sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MyMenuViewController(), menuPosition:.Left)
         
-        // make navigation bar showing over side menu
+        // show the navigation bar over the side menu view
         view.bringSubviewToFront(navigationBar)
     }
 ```
