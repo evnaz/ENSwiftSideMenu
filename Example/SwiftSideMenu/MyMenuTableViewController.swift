@@ -66,11 +66,12 @@ class MyMenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        println("did select row: \(indexPath.row)")
+        println("Selected row: \(indexPath.row)")
         
         if (indexPath.row == selectedMenuItem) {
             return
         }
+        
         selectedMenuItem = indexPath.row
         
         //Present new view controller
