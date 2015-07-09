@@ -30,12 +30,12 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
     func sideMenuWillClose() {
         println("sideMenuWillClose")
     }
-    
+    /*
     func sideMenuShouldOpenSideMenu() -> Bool {
         println("sideMenuShouldOpenSideMenu")
         return false
     }
-
+    */
     /*
     // MARK: - Navigation
 
