@@ -85,7 +85,7 @@ public extension UIViewController {
         if (iteration == nil) {
             return topMostController()
         }
-        do {
+        repeat {
             if (iteration is ENSideMenuProtocol) {
                 return iteration as? ENSideMenuProtocol
             } else if (iteration?.parentViewController != nil && iteration?.parentViewController != iteration) {
@@ -186,7 +186,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         self.init(sourceView: sourceView, menuPosition: menuPosition)
         self.menuViewController = menuViewController
         self.menuViewController.view.frame = sideMenuContainerView.bounds
-        self.menuViewController.view.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        self.menuViewController.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         sideMenuContainerView.addSubview(self.menuViewController.view)
     }
 /*
@@ -245,9 +245,9 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         
         if (NSClassFromString("UIVisualEffectView") != nil) {
             // Add blur view
-            var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
             visualEffectView.frame = sideMenuContainerView.bounds
-            visualEffectView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+            visualEffectView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
             sideMenuContainerView.addSubview(visualEffectView)
         }
         else {
