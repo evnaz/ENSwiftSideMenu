@@ -30,6 +30,15 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
     func sideMenuWillClose() {
         println("sideMenuWillClose")
     }
+    
+    func sideMenuDidClose() {
+        println("sideMenuDidClose")
+    }
+    
+    func sideMenuDidOpen() {
+        println("sideMenuDidOpen")
+    }
+    
     /*
     func sideMenuShouldOpenSideMenu() -> Bool {
         println("sideMenuShouldOpenSideMenu")
