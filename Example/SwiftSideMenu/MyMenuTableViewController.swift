@@ -66,7 +66,7 @@ class MyMenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        println("Selected row: \(indexPath.row)")
+        print("did select row: \(indexPath.row)")
         
         if (indexPath.row == selectedMenuItem) {
             return
