@@ -11,6 +11,8 @@ import UIKit
 @objc public protocol ENSideMenuDelegate {
     optional func sideMenuWillOpen()
     optional func sideMenuWillClose()
+    optional func sideMenuDidOpen()
+    optional func sideMenuDidClose()
     optional func sideMenuShouldOpenSideMenu () -> Bool
 }
 
@@ -152,6 +154,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         self.setupMenuView()
     
         animator = UIDynamicAnimator(referenceView:sourceView)
+        animator.delegate = self
         
         // Add right swipe gesture recognizer
         let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleGesture:")
@@ -318,8 +321,17 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
                                         height)
             }
             
-            UIView.animateWithDuration(animationDuration, animations: { () -> Void in
-                self.sideMenuContainerView.frame = destFrame
+            UIView.animateWithDuration(
+                animationDuration,
+                animations: { () -> Void in
+                    self.sideMenuContainerView.frame = destFrame
+                },
+                completion: { (Bool) -> Void in
+                    if (self.isMenuOpen) {
+                        self.delegate?.sideMenuDidOpen?()
+                    } else {
+                        self.delegate?.sideMenuDidClose?()
+                    }
             })
         }
         
@@ -391,6 +403,20 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         if (isMenuOpen) {
             toggleMenu(false)
         }
+    }
+}
+
+extension ENSideMenu: UIDynamicAnimatorDelegate {
+    public func dynamicAnimatorDidPause(animator: UIDynamicAnimator) {
+        if (self.isMenuOpen) {
+            self.delegate?.sideMenuDidOpen?()
+        } else {
+            self.delegate?.sideMenuDidClose?()
+        }
+    }
+    
+    public func dynamicAnimatorWillResume(animator: UIDynamicAnimator) {
+        println("resume")
     }
 }
 
