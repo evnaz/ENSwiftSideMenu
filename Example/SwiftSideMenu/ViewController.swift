@@ -41,11 +41,11 @@ class ViewController: UIViewController, ENSideMenuDelegate {
     }
     
     func sideMenuDidClose() {
-        println("sideMenuDidClose")
+        print("sideMenuDidClose")
     }
     
     func sideMenuDidOpen() {
-        println("sideMenuDidOpen")
+        print("sideMenuDidOpen")
     }
 }
 

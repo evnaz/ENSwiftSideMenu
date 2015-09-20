@@ -37,11 +37,11 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
     }
     
     func sideMenuDidClose() {
-        println("sideMenuDidClose")
+        print("sideMenuDidClose")
     }
     
     func sideMenuDidOpen() {
-        println("sideMenuDidOpen")
+        print("sideMenuDidOpen")
     }
 
     /*

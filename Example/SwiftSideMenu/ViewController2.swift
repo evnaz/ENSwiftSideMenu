@@ -32,11 +32,11 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
     }
     
     func sideMenuDidClose() {
-        println("sideMenuDidClose")
+        print("sideMenuDidClose")
     }
     
     func sideMenuDidOpen() {
-        println("sideMenuDidOpen")
+        print("sideMenuDidOpen")
     }
     
     /*
