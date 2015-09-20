@@ -44,7 +44,7 @@ class MyMenuTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CELL")
@@ -66,7 +66,7 @@ class MyMenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        println("did select row: \(indexPath.row)")
+        print("did select row: \(indexPath.row)")
         
         if (indexPath.row == selectedMenuItem) {
             return
@@ -78,16 +78,16 @@ class MyMenuTableViewController: UITableViewController {
         var destViewController : UIViewController
         switch (indexPath.row) {
         case 0:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController1") as! UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController1") 
             break
         case 1:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController2")as! UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController2")
             break
         case 2:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController3")as! UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController3")
             break
         default:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController4") as! UIViewController
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController4") 
             break
         }
         sideMenuController()?.setContentViewController(destViewController)
