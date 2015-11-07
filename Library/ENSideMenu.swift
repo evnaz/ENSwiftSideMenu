@@ -127,7 +127,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     /// The duration of the slide animation. Used only when `bouncingEnabled` is FALSE.
     public var animationDuration = 0.4
     private let sideMenuContainerView =  UIView()
-    private var menuViewController : UIViewController!
+    private(set) var menuViewController : UIViewController!
     private var animator : UIDynamicAnimator!
     private var sourceView : UIView!
     private var needUpdateApperance : Bool = false
