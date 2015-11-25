@@ -122,6 +122,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         }
     }
     private var menuPosition:ENSideMenuPosition = .Left
+    private var blurStyle: UIBlurEffectStyle = .Light
     ///  A Boolean value indicating whether the bouncing effect is enabled. The default value is TRUE.
     public var bouncingEnabled :Bool = true
     /// The duration of the slide animation. Used only when `bouncingEnabled` is FALSE.
@@ -147,10 +148,11 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     
     :returns: An initialized `ENSideMenu` object, added to the specified view.
     */
-    public init(sourceView: UIView, menuPosition: ENSideMenuPosition) {
+    public init(sourceView: UIView, menuPosition: ENSideMenuPosition, blurStyle: UIBlurEffectStyle = .Light) {
         super.init()
         self.sourceView = sourceView
         self.menuPosition = menuPosition
+        self.blurStyle = blurStyle
         self.setupMenuView()
     
         animator = UIDynamicAnimator(referenceView:sourceView)
@@ -185,8 +187,8 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     
     :returns: An initialized `ENSideMenu` object, added to the specified view, containing the specified menu view controller.
     */
-    public convenience init(sourceView: UIView, menuViewController: UIViewController, menuPosition: ENSideMenuPosition) {
-        self.init(sourceView: sourceView, menuPosition: menuPosition)
+    public convenience init(sourceView: UIView, menuViewController: UIViewController, menuPosition: ENSideMenuPosition, blurStyle: UIBlurEffectStyle = .Light) {
+        self.init(sourceView: sourceView, menuPosition: menuPosition, blurStyle: blurStyle)
         self.menuViewController = menuViewController
         self.menuViewController.view.frame = sideMenuContainerView.bounds
         self.menuViewController.view.autoresizingMask =  [.FlexibleHeight, .FlexibleWidth]
@@ -248,7 +250,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         
         if (NSClassFromString("UIVisualEffectView") != nil) {
             // Add blur view
-            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: blurStyle)) as UIVisualEffectView
             visualEffectView.frame = sideMenuContainerView.bounds
             visualEffectView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
             sideMenuContainerView.addSubview(visualEffectView)
