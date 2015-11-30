@@ -17,7 +17,7 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
         //sideMenu?.delegate = self //optional
         sideMenu?.menuWidth = 180.0 // optional, default is 160
         //sideMenu?.bouncingEnabled = false
-        
+        //sideMenu?.allowPanGesture = false
         // make navigation bar showing over side menu
         view.bringSubviewToFront(navigationBar)
     }
@@ -29,11 +29,19 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
     
     // MARK: - ENSideMenu Delegate
     func sideMenuWillOpen() {
-        println("sideMenuWillOpen")
+        print("sideMenuWillOpen")
     }
     
     func sideMenuWillClose() {
-        println("sideMenuWillClose")
+        print("sideMenuWillClose")
+    }
+    
+    func sideMenuDidClose() {
+        print("sideMenuDidClose")
+    }
+    
+    func sideMenuDidOpen() {
+        print("sideMenuDidOpen")
     }
 
     /*

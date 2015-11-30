@@ -17,6 +17,7 @@
 		5C13259C198E2A9A00CA49BE /* SwiftSideMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C13259B198E2A9A00CA49BE /* SwiftSideMenuTests.swift */; };
 		5C1325AA198E2AB300CA49BE /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1325A7198E2AB300CA49BE /* image.png */; };
 		5C6D6A271A7E26380047FE0D /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6D6A261A7E26380047FE0D /* ViewController2.swift */; };
+		5C7D78C21BAEEEC2002BD24B /* LaunchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C7D78C11BAEEEC2002BD24B /* LaunchView.xib */; settings = {ASSET_TAGS = (); }; };
 		9E4766FC19DDBCE900FCEACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C13258C198E2A9A00CA49BE /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		5C13259B198E2A9A00CA49BE /* SwiftSideMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSideMenuTests.swift; sourceTree = "<group>"; };
 		5C1325A7198E2AB300CA49BE /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		5C6D6A261A7E26380047FE0D /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		5C7D78C11BAEEEC2002BD24B /* LaunchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				1429137B19D979A50025188A /* Storyboard Example */,
 				5C1325A7198E2AB300CA49BE /* image.png */,
 				5C13258C198E2A9A00CA49BE /* Main.storyboard */,
+				5C7D78C11BAEEEC2002BD24B /* LaunchView.xib */,
 				5C13258F198E2A9A00CA49BE /* Images.xcassets */,
 				5C132586198E2A9A00CA49BE /* Supporting Files */,
 			);
@@ -197,7 +200,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Evgeny Nazarov";
 				TargetAttributes = {
 					5C132582198E2A9A00CA49BE = {
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E4766FC19DDBCE900FCEACC /* Main.storyboard in Resources */,
+				5C7D78C21BAEEEC2002BD24B /* LaunchView.xib in Resources */,
 				5C132590198E2A9A00CA49BE /* Images.xcassets in Resources */,
 				5C1325AA198E2AB300CA49BE /* image.png in Resources */,
 			);
@@ -313,6 +317,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -376,10 +381,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftSideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -388,10 +393,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftSideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -410,6 +415,7 @@
 				);
 				INFOPLIST_FILE = SwiftSideMenuTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -425,6 +431,7 @@
 				);
 				INFOPLIST_FILE = SwiftSideMenuTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.test.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};

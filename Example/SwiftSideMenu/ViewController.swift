@@ -28,16 +28,24 @@ class ViewController: UIViewController, ENSideMenuDelegate {
     
     // MARK: - ENSideMenu Delegate
     func sideMenuWillOpen() {
-        println("sideMenuWillOpen")
+        print("sideMenuWillOpen")
     }
     
     func sideMenuWillClose() {
-        println("sideMenuWillClose")
+        print("sideMenuWillClose")
     }
     
     func sideMenuShouldOpenSideMenu() -> Bool {
-        println("sideMenuShouldOpenSideMenu")
+        print("sideMenuShouldOpenSideMenu")
         return true
+    }
+    
+    func sideMenuDidClose() {
+        print("sideMenuDidClose")
+    }
+    
+    func sideMenuDidOpen() {
+        print("sideMenuDidOpen")
     }
 }
 
