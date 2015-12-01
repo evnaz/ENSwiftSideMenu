@@ -1,20 +1,29 @@
-ENSwiftSideMenu
-===============
+# ENSwiftSideMenu
 
-A simple side menu for iOS 8 written in Swift. Using the UIDynamic framework, UIGestures and UIBlurEffect.
+A lightweight flyover side menu component for iOS with the ```UIDynamic```'s bouncing animation, ```UIGestures``` and ```UIBlurEffect```. Allows you to use native ```UINavigationController```'s logic to manage view controllers. The component is written in ```Swift```.
 
-##Demo
+## Demo
 ![](https://raw.githubusercontent.com/evnaz/ENSwiftSideMenu/master/side_menu.gif)
 
-##Requirements
-* Xcode 6.3
+## Requirements
+* Xcode 6.3 or higher
 * iOS 8 or higher
 
-##How to use
-1. Import `ENSideMenu.swift` and `ENSideMenuNavigationController.swift` to your project folder
-2. Create a root UINavigationController subclassing from ENSideMenuNavigationController
-3. Create a UIViewController for side menu
-4. Initilize the menu view with a source view and menu view controller:
+## Installation
+
+### CocoaPods
+The recommended way for installating `ENSwiftSideMenu` is via the [CocoaPods](http://cocoapods.org/) package manager
+``` bash
+platform :ios, '8.0'
+pod 'ENSwiftSideMenu', '~> 0.0.9'
+```
+### Manual Install
+All you need is import `ENSideMenu.swift` and `ENSideMenuNavigationController.swift` to your project folder.
+
+## Usage Example
+1. Create a root UINavigationController subclassing from ENSideMenuNavigationController
+2. Create a UIViewController for your side menu
+3. Initilize the menu view with a source view and menu view controller:
 ```swift
   override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +37,7 @@ A simple side menu for iOS 8 written in Swift. Using the UIDynamic framework, UI
 
 Check example project for more explanation
 
-##License
+## License
 
 The MIT License (MIT)
 
