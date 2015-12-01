@@ -1,8 +1,7 @@
 # ENSwiftSideMenu
 
-A lightweight flyover side menu component for iOS with the ```UIDynamic```'s bouncing animation, ```UIGestures``` and ```UIBlurEffect```. Allows you to use native ```UINavigationController```'s logic to manage view controllers. The component is written in ```Swift```.
+A lightweight flyover side menu component for iOS with the ```UIDynamic```'s bouncing animation, ```UIGestures``` and ```UIBlurEffect```. Allows you to use native ```UINavigationController```'s logic to manage view controllers. The component is written in **Swift**.
 
-## Demo
 ![](https://raw.githubusercontent.com/evnaz/ENSwiftSideMenu/master/side_menu.gif)
 
 ## Requirements
@@ -10,7 +9,6 @@ A lightweight flyover side menu component for iOS with the ```UIDynamic```'s bou
 * iOS 8 or higher
 
 ## Installation
-
 ### CocoaPods
 The recommended way for installating `ENSwiftSideMenu` is via the [CocoaPods](http://cocoapods.org/) package manager
 ``` bash
