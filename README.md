@@ -22,18 +22,23 @@ All you need is import `ENSideMenu.swift` and `ENSideMenuNavigationController.sw
 1. Create a root UINavigationController subclassing from ENSideMenuNavigationController
 2. Create a UIViewController for your side menu
 3. Initilize the menu view with a source view and menu view controller:
-```swift
+  
+  ```swift
   override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MyMenuViewController(), menuPosition:.Left)
-        
-        // show the navigation bar over the side menu view
-        view.bringSubviewToFront(navigationBar)
-    }
-```
+    super.viewDidLoad()
+    sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MyMenuViewController(), menuPosition:.Left)
+    // show the navigation bar over the side menu view
+    view.bringSubviewToFront(navigationBar)
+  }
+  ```
+  
+4. To change content view controller implement next code in your menu view controller:
 
-Check example project for more explanation
+  ```swift
+  sideMenuController()?.setContentViewController(destViewController)
+  ```
+
+5. Check example project for more explanation
 
 ## License
 
