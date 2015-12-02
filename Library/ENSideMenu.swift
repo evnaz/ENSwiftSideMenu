@@ -118,6 +118,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     public var menuWidth : CGFloat = 160.0 {
         didSet {
             needUpdateApperance = true
+            updateSideMenuApperanceIfNeeded()
             updateFrame()
         }
     }
