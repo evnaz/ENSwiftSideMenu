@@ -119,6 +119,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         didSet {
             needUpdateApperance = true
             updateFrame()
+            updateSideMenuApperanceIfNeeded()
         }
     }
     private var menuPosition:ENSideMenuPosition = .Left
