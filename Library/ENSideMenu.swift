@@ -288,16 +288,16 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             if (menuPosition == .Left) {
                 // Left side menu
                 gravityDirectionX = (shouldOpen) ? 1 : -1
-                pushMagnitude = (shouldOpen) ? 20 : -20
+                pushMagnitude = (shouldOpen) ? 35 : -35
                 boundaryPointX = (shouldOpen) ? menuWidth : -menuWidth-2
-                boundaryPointY = 20
+                boundaryPointY = 25
             }
             else {
                 // Right side menu
                 gravityDirectionX = (shouldOpen) ? -1 : 1
-                pushMagnitude = (shouldOpen) ? -20 : 20
+                pushMagnitude = (shouldOpen) ? -35 : 35
                 boundaryPointX = (shouldOpen) ? width-menuWidth : width+menuWidth+2
-                boundaryPointY =  -20
+                boundaryPointY =  -25
             }
             
             let gravityBehavior = UIGravityBehavior(items: [sideMenuContainerView])
