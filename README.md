@@ -13,7 +13,7 @@ A lightweight flyover side menu component for iOS with the ```UIDynamic```'s bou
 The recommended way for installating `ENSwiftSideMenu` is via the [CocoaPods](http://cocoapods.org/) package manager
 ``` bash
 platform :ios, '8.0'
-pod 'ENSwiftSideMenu', '~> 0.0.9'
+pod 'ENSwiftSideMenu', '~> 0.1'
 ```
 ### Manual Install
 All you need is import `ENSideMenu.swift` and `ENSideMenuNavigationController.swift` to your project folder.
