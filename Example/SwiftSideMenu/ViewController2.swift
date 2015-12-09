@@ -39,12 +39,12 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
         print("sideMenuDidOpen")
     }
     
-    /*
+    
     func sideMenuShouldOpenSideMenu() -> Bool {
         print("sideMenuShouldOpenSideMenu")
-        return true
+        return false
     }
-    */
+
     /*
     // MARK: - Navigation
 
