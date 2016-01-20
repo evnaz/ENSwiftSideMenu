@@ -105,11 +105,15 @@ public extension UIViewController {
         if (topController is UITabBarController) {
             topController = (topController as! UITabBarController).selectedViewController
         }
-        while (topController?.presentedViewController is ENSideMenuProtocol) {
+        var lastMenuProtocol : ENSideMenuProtocol?
+        while (topController?.presentedViewController != nil) {
+            if(topController?.presentedViewController is ENSideMenuProtocol) {
+                lastMenuProtocol = topController?.presentedViewController as? ENSideMenuProtocol
+            }
             topController = topController?.presentedViewController
         }
         
-        return topController as? ENSideMenuProtocol
+        return lastMenuProtocol
     }
 }
 
