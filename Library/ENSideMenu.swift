@@ -113,7 +113,12 @@ public extension UIViewController {
             topController = topController?.presentedViewController
         }
         
-        return lastMenuProtocol
+        if (lastMenuProtocol != nil) {
+            return lastMenuProtocol
+        }
+        else {
+            return topController as? ENSideMenuProtocol
+        }
     }
 }
 
