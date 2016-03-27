@@ -42,7 +42,7 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
     
     func sideMenuShouldOpenSideMenu() -> Bool {
         print("sideMenuShouldOpenSideMenu")
-        return false
+        return true
     }
 
     /*
