@@ -170,17 +170,17 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         animator = UIDynamicAnimator(referenceView:sourceView)
         animator.delegate = self
         
-        self.panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        self.panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ENSideMenu.handlePan(_:)))
         panRecognizer!.delegate = self
         sourceView.addGestureRecognizer(panRecognizer!)
         
         // Add right swipe gesture recognizer
-        let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleGesture:")
+        let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ENSideMenu.handleGesture(_:)))
         rightSwipeGestureRecognizer.delegate = self
         rightSwipeGestureRecognizer.direction =  UISwipeGestureRecognizerDirection.Right
         
         // Add left swipe gesture recognizer
-        let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleGesture:")
+        let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ENSideMenu.handleGesture(_:)))
         leftSwipeGestureRecognizer.delegate = self
         leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
         
@@ -506,10 +506,6 @@ extension ENSideMenu: UIDynamicAnimatorDelegate {
         } else {
             self.delegate?.sideMenuDidClose?()
         }
-    }
-    
-    public func dynamicAnimatorWillResume(animator: UIDynamicAnimator) {
-        print("resume")
     }
 }
 
