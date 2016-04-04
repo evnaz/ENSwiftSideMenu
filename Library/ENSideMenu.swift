@@ -385,35 +385,35 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
                 return false
             }
             animator.removeAllBehaviors()
-            let touchPosition = gestureRecognizer.locationOfTouch(0, inView: sourceView)
-            if menuPosition == .Left {
-                if isMenuOpen {
-                    if touchPosition.x < menuWidth {
-                        return true
-                    }
-                }
-                else {
-                    if touchPosition.x < 25 {
-                        return true
-                    }
+        }
+        
+        let touchPosition = gestureRecognizer.locationOfTouch(0, inView: sourceView)
+        if menuPosition == .Left {
+            if isMenuOpen {
+                if touchPosition.x < menuWidth {
+                    return true
                 }
             }
             else {
-                if isMenuOpen {
-                    if touchPosition.x > CGRectGetWidth(sourceView.frame) - menuWidth {
-                        return true
-                    }
-                }
-                else {
-                    if touchPosition.x > CGRectGetWidth(sourceView.frame)-25 {
-                        return true
-                    }
+                if touchPosition.x < 25 {
+                    return true
                 }
             }
-            
-            return false
         }
-        return true
+        else {
+            if isMenuOpen {
+                if touchPosition.x > CGRectGetWidth(sourceView.frame) - menuWidth {
+                    return true
+                }
+            }
+            else {
+                if touchPosition.x > CGRectGetWidth(sourceView.frame)-25 {
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
     
     internal func handleGesture(gesture: UISwipeGestureRecognizer) {
