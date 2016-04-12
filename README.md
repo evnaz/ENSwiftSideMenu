@@ -32,7 +32,7 @@ All you need is import `ENSideMenu.swift` and `ENSideMenuNavigationController.sw
   }
   ```
   
-4. To change content view controller implement next code in your menu view controller:
+4. To change content view controller use next line in your menu view controller:
 
   ```swift
   sideMenuController()?.setContentViewController(destViewController)
