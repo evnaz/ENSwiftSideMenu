@@ -459,6 +459,10 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     }
     
     private func updateSideMenuApperanceIfNeeded () {
+        if let superview = sideMenuContainerView.superview {
+            superview.bringSubviewToFront(sideMenuContainerView)
+        }
+
         if (needUpdateApperance) {
             var frame = sideMenuContainerView.frame
             frame.size.width = menuWidth
