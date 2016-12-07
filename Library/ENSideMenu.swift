@@ -367,7 +367,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         }
 
         if gestureRecognizer is UISwipeGestureRecognizer {
-            let swipeGestureRecognizer = gestureRecognizer as! UISwipeGestureRecognizer
+            let swipeGestureRecognizer = gestureRecognizer as UISwipeGestureRecognizer
             if !self.allowLeftSwipe {
                 if swipeGestureRecognizer.direction == .left {
                     return false
