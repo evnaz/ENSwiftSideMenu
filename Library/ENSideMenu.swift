@@ -152,10 +152,8 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     open var allowPanGesture : Bool = true
     fileprivate var panRecognizer : UIPanGestureRecognizer?
     
-    // EXTEND 1/3 : Hide menu option
-    public let clickOutsideClose: Bool = true
-    public let outerView: UIView = UIView()
-    // EXTEND END 1/3: Hide menu option
+    fileprivate let clickOutsideClose = true
+    fileprivate let outerView: UIView = UIView()
     
     
     /**
@@ -198,17 +196,15 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             sideMenuContainerView.addGestureRecognizer(rightSwipeGestureRecognizer)
             sourceView.addGestureRecognizer(leftSwipeGestureRecognizer)
         }
-        
-        // EXTEND 2/3: Hide menu option
+
         if clickOutsideClose == true {
-            outerView.frame = CGRect(x: sideMenuContainerView.frame.width, y: 0, width: sourceView.frame.width - sideMenuContainerView.frame.width, height: sourceView.frame.height)
+            self.updateOuterViewFrame()
             outerView.backgroundColor = UIColor.clear
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ENSideMenu.hideSideMenu))
             outerView.addGestureRecognizer(tapRecognizer)
             outerView.isUserInteractionEnabled = false
             sourceView.addSubview(outerView)
         }
-        // EXTEND END 2/3: Hide menu option
         
     }
     /**
@@ -250,9 +246,24 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             width: menuWidth,
             height: height
         )
+
         sideMenuContainerView.frame = menuFrame
+        self.updateOuterViewFrame()
     }
-    
+
+    /**
+     Updates the frame of the outer view
+     */
+    func updateOuterViewFrame() {
+        let outerViewFrame = CGRect(
+            x: (menuPosition == .left) ? sideMenuContainerView.frame.width : 0,
+            y: 0,
+            width: sourceView.frame.width - sideMenuContainerView.frame.width,
+            height: sourceView.frame.height
+        )
+        outerView.frame = outerViewFrame
+    }
+
     fileprivate func adjustFrameDimensions( _ width: CGFloat, height: CGFloat ) -> (CGFloat,CGFloat) {
         if floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 &&
             (UIApplication.shared.statusBarOrientation == UIInterfaceOrientation.landscapeRight ||
@@ -294,12 +305,9 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     }
     
     fileprivate func toggleMenu (_ shouldOpen: Bool) {
-        
-        // EXTEND 3/3 : Hide menu option
-        if clickOutsideClose == true {
+        if clickOutsideClose {
             outerView.isUserInteractionEnabled = shouldOpen
-        }        
-        // EXTEND END 3/3 : Hide menu option
+        }
         
         
         if (shouldOpen && delegate?.sideMenuShouldOpenSideMenu?() == false) {
