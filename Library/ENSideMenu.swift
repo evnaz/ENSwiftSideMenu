@@ -416,12 +416,12 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         return true
     }
 
-    internal func handleGesture(_ gesture: UISwipeGestureRecognizer) {
+    @objc internal func handleGesture(_ gesture: UISwipeGestureRecognizer) {
         toggleMenu((self.menuPosition == .right && gesture.direction == .left)
                 || (self.menuPosition == .left && gesture.direction == .right))
     }
 
-    internal func handlePan(_ recognizer : UIPanGestureRecognizer){
+    @objc internal func handlePan(_ recognizer : UIPanGestureRecognizer){
 
         let leftToRight = recognizer.velocity(in: recognizer.view).x > 0
 
