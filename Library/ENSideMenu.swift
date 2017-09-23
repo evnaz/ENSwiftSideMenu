@@ -8,15 +8,15 @@
 
 import UIKit
 
-@objc public protocol ENSideMenuDelegate {
-    @objc optional func sideMenuWillOpen()
-    @objc optional func sideMenuWillClose()
-    @objc optional func sideMenuDidOpen()
-    @objc optional func sideMenuDidClose()
-    @objc optional func sideMenuShouldOpenSideMenu () -> Bool
+public protocol ENSideMenuDelegate: class {
+    func sideMenuWillOpen()
+    func sideMenuWillClose()
+    func sideMenuShouldOpenSideMenu () -> Bool
+    func sideMenuDidOpen()
+    func sideMenuDidClose()
 }
 
-@objc public protocol ENSideMenuProtocol {
+public protocol ENSideMenuProtocol: class {
     var sideMenu : ENSideMenu? { get }
     func setContentViewController(_ contentViewController: UIViewController)
 }
@@ -53,7 +53,6 @@ public extension UIViewController {
     Shows the side menu view.
     */
     public func showSideMenuView () {
-
         sideMenuController()?.sideMenu?.showSideMenu()
     }
 
@@ -63,7 +62,7 @@ public extension UIViewController {
     :returns: BOOL value
     */
     public func isSideMenuOpen () -> Bool {
-        let sieMenuOpen = self.sideMenuController()?.sideMenu?.isMenuOpen
+        let sieMenuOpen = sideMenuController()?.sideMenu?.isMenuOpen
         return sieMenuOpen!
     }
 
@@ -73,7 +72,7 @@ public extension UIViewController {
      * A convenient way to do it might be creating a subclass of UIViewController that does precisely that and then subclassing your view controllers from it.
      */
     func fixSideMenuSize() {
-        if let navController = self.navigationController as? ENSideMenuNavigationController {
+        if let navController = navigationController as? ENSideMenuNavigationController {
             navController.sideMenu?.updateFrame()
         }
     }
@@ -83,7 +82,7 @@ public extension UIViewController {
     :returns: A `UIViewController`responding to `ENSideMenuProtocol` protocol
     */
     public func sideMenuController () -> ENSideMenuProtocol? {
-        var iteration : UIViewController? = self.parent
+        var iteration : UIViewController? = parent
         if (iteration == nil) {
             return topMostController()
         }
@@ -206,18 +205,10 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     public convenience init(sourceView: UIView, menuViewController: UIViewController, menuPosition: ENSideMenuPosition, blurStyle: UIBlurEffectStyle = .light) {
         self.init(sourceView: sourceView, menuPosition: menuPosition, blurStyle: blurStyle)
         self.menuViewController = menuViewController
-        self.menuViewController.view.frame = sideMenuContainerView.bounds
-        self.menuViewController.view.autoresizingMask =  [.flexibleHeight, .flexibleWidth]
-        sideMenuContainerView.addSubview(self.menuViewController.view)
+        menuViewController.view.frame = sideMenuContainerView.bounds
+        menuViewController.view.autoresizingMask =  [.flexibleHeight, .flexibleWidth]
+        sideMenuContainerView.addSubview(menuViewController.view)
     }
-/*
-    public convenience init(sourceView: UIView, view: UIView, menuPosition: ENSideMenuPosition) {
-        self.init(sourceView: sourceView, menuPosition: menuPosition)
-        view.frame = sideMenuContainerView.bounds
-        view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-        sideMenuContainerView.addSubview(view)
-    }
-*/
     /**
     Updates the frame of the side menu view.
     */
@@ -277,7 +268,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     }
 
     fileprivate func toggleMenu (_ shouldOpen: Bool) {
-        if (shouldOpen && delegate?.sideMenuShouldOpenSideMenu?() == false) {
+        if shouldOpen, delegate?.sideMenuShouldOpenSideMenu() == false {
             return
         }
         updateSideMenuApperanceIfNeeded()
@@ -341,40 +332,41 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
 
             UIView.animate(
                 withDuration: animationDuration,
-                animations: { () -> Void in
-                    self.sideMenuContainerView.frame = destFrame
+                animations: { [weak self] () -> Void in
+                    self?.sideMenuContainerView.frame = destFrame
                 },
-                completion: { (Bool) -> Void in
-                    if (self.isMenuOpen) {
-                        self.delegate?.sideMenuDidOpen?()
+                completion: { [weak self] (Bool) -> Void in
+                    guard let strongSelf = self else { return }
+                    if (strongSelf.isMenuOpen) {
+                        strongSelf.delegate?.sideMenuDidOpen()
                     } else {
-                        self.delegate?.sideMenuDidClose?()
+                        strongSelf.delegate?.sideMenuDidClose()
                     }
             })
         }
 
         if (shouldOpen) {
-            delegate?.sideMenuWillOpen?()
+            delegate?.sideMenuWillOpen()
         } else {
-            delegate?.sideMenuWillClose?()
+            delegate?.sideMenuWillClose()
         }
     }
 
     open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 
-        if delegate?.sideMenuShouldOpenSideMenu?() == false {
+        if delegate?.sideMenuShouldOpenSideMenu() == false {
             return false
         }
 
         if gestureRecognizer is UISwipeGestureRecognizer {
             let swipeGestureRecognizer = gestureRecognizer as! UISwipeGestureRecognizer
-            if !self.allowLeftSwipe {
+            if !allowLeftSwipe {
                 if swipeGestureRecognizer.direction == .left {
                     return false
                 }
             }
 
-            if !self.allowRightSwipe {
+            if !allowRightSwipe {
                 if swipeGestureRecognizer.direction == .right {
                     return false
                 }
@@ -417,8 +409,8 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     }
 
     @objc internal func handleGesture(_ gesture: UISwipeGestureRecognizer) {
-        toggleMenu((self.menuPosition == .right && gesture.direction == .left)
-                || (self.menuPosition == .left && gesture.direction == .right))
+        toggleMenu((menuPosition == .right && gesture.direction == .left)
+                || (menuPosition == .left && gesture.direction == .right))
     }
 
     @objc internal func handlePan(_ recognizer : UIPanGestureRecognizer){
@@ -436,7 +428,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             let xPoint : CGFloat = sideMenuContainerView.center.x + translation + (menuPosition == .left ? 1 : -1) * menuWidth / 2
 
             if menuPosition == .left {
-                if xPoint <= 0 || xPoint > self.sideMenuContainerView.frame.width {
+                if xPoint <= 0 || xPoint > sideMenuContainerView.frame.width {
                     return
                 }
             }else{
@@ -501,10 +493,10 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
 
 extension ENSideMenu: UIDynamicAnimatorDelegate {
     public func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
-        if (self.isMenuOpen) {
-            self.delegate?.sideMenuDidOpen?()
+        if (isMenuOpen) {
+            delegate?.sideMenuDidOpen()
         } else {
-            self.delegate?.sideMenuDidClose?()
+            delegate?.sideMenuDidClose()
         }
     }
 }

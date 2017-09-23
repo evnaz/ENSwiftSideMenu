@@ -8,8 +8,7 @@
 
 import UIKit
 
-class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
-
+class MyNavigationController: ENSideMenuNavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,8 +25,9 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - ENSideMenu Delegate
+}
+
+extension MyNavigationController: ENSideMenuDelegate {
     func sideMenuWillOpen() {
         print("sideMenuWillOpen")
     }
@@ -43,15 +43,8 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
     func sideMenuDidOpen() {
         print("sideMenuDidOpen")
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func sideMenuShouldOpenSideMenu() -> Bool {
+        return true
     }
-    */
-
 }
