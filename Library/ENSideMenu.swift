@@ -40,19 +40,19 @@ public extension UIViewController {
     /**
     Changes current state of side menu view.
     */
-    public func toggleSideMenuView () {
+    @objc public func toggleSideMenuView () {
         sideMenuController()?.sideMenu?.toggleMenu()
     }
     /**
     Hides the side menu view.
     */
-    public func hideSideMenuView () {
+    @objc public func hideSideMenuView () {
         sideMenuController()?.sideMenu?.hideSideMenu()
     }
     /**
     Shows the side menu view.
     */
-    public func showSideMenuView () {
+    @objc public func showSideMenuView () {
         sideMenuController()?.sideMenu?.showSideMenu()
     }
 
