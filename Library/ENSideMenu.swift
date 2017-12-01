@@ -16,6 +16,13 @@ public protocol ENSideMenuDelegate: class {
     func sideMenuDidClose()
 }
 
+extension ENSideMenuDelegate {
+    func sideMenuWillOpen() {}
+    func sideMenuWillClose() {}
+    func sideMenuDidOpen() {}
+    func sideMenuDidClose() {}
+}
+
 public protocol ENSideMenuProtocol: class {
     var sideMenu : ENSideMenu? { get }
     func setContentViewController(_ contentViewController: UIViewController)
