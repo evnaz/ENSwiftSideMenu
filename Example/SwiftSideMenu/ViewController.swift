@@ -21,8 +21,7 @@ class ViewController: UIViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func toggleSideMenu(sender: AnyObject) {
+    @IBAction func toggleSideMenuBtn(_ sender: UIBarButtonItem) {
         toggleSideMenuView()
     }
     
@@ -38,6 +37,14 @@ class ViewController: UIViewController, ENSideMenuDelegate {
     func sideMenuShouldOpenSideMenu() -> Bool {
         print("sideMenuShouldOpenSideMenu")
         return true
+    }
+    
+    func sideMenuDidClose() {
+        print("sideMenuDidClose")
+    }
+    
+    func sideMenuDidOpen() {
+        print("sideMenuDidOpen")
     }
 }
 
