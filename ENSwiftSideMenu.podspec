@@ -9,14 +9,14 @@
 Pod::Spec.new do |s|
 
   s.name         = "ENSwiftSideMenu"
-  s.version      = "0.1.1"
+  s.version      = "1.0.0"
   s.summary      = "A simple side menu for iOS 8"
-  s.homepage     = "https://github.com/evnaz/ENSwiftSideMenu"
+  s.homepage     = "https://github.com/andreaswillems/ENSwiftSideMenu"
   s.license      = { :type => "MIT", :file => "LICENSE" }
-  s.author       = { "Evgeny Nazarov" => "e.nazarov@yahoo.com" }
+  s.author       = { "Andreas Willems" => "andreas.willems@entwicklung.eq-3.de" }
   s.requires_arc      = true
   s.platform = :ios, "8.0"
-  s.source   = { :git => "https://github.com/evnaz/ENSwiftSideMenu.git", :tag => "0.1.3"}
+  s.source   = { :git => "https://github.com/andreaswillems/ENSwiftSideMenu.git", :tag => "1.0.0"}
   s.source_files      = "Library/ENSideMenu.swift", "Library/ENSideMenuNavigationController.swift"
 
 end
