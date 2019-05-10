@@ -12,13 +12,20 @@ class MyNavigationController: ENSideMenuNavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MyMenuTableViewController(), menuPosition:.left)
-        //sideMenu?.delegate = self //optional
-        sideMenu?.menuWidth = 180.0 // optional, default is 160
-        //sideMenu?.bouncingEnabled = false
-        //sideMenu?.allowPanGesture = false
-        // make navigation bar showing over side menu
-        view.bringSubview(toFront: navigationBar)
+        // Create a table view controller
+        let tableViewController = MyMenuTableViewController()
+        
+        // Create side menu
+        sideMenu = ENSideMenu(sourceView: view, menuViewController: tableViewController, menuPosition:.left)
+        
+        // Set a delegate
+        sideMenu?.delegate = self
+        
+        // Configure side menu
+        sideMenu?.menuWidth = 180.0
+        
+        // Show navigation bar above side menu  
+        view.bringSubviewToFront(navigationBar)
     }
 
     override func didReceiveMemoryWarning() {
