@@ -9,46 +9,44 @@
 import UIKit
 
 class MyMenuTableViewController: UITableViewController {
+    
+    private let menuOptionCellId = "Cell"
     var selectedMenuItem : Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Customize apperance of table view
-        tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //
+        tableView.contentInset = UIEdgeInsets(top: 64.0, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         tableView.scrollsToTop = false
         
         // Preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
+        clearsSelectionOnViewWillAppear = false
         
+        // Preselect a menu option
         tableView.selectRow(at: IndexPath(row: selectedMenuItem, section: 0), animated: false, scrollPosition: .middle)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Return the number of sections.
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Return the number of rows in the section.
         return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL")
+        var cell = tableView.dequeueReusableCell(withIdentifier: menuOptionCellId)
         
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "CELL")
-            cell!.backgroundColor = UIColor.clear
-            cell!.textLabel?.textColor = UIColor.darkGray
+            cell = UITableViewCell(style:.default, reuseIdentifier: menuOptionCellId)
+            cell!.backgroundColor = .clear
+            cell!.textLabel?.textColor = .darkGray
             let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell!.frame.size.width, height: cell!.frame.size.height))
             selectedBackgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
             cell!.selectedBackgroundView = selectedBackgroundView
@@ -92,16 +90,5 @@ class MyMenuTableViewController: UITableViewController {
         }
         sideMenuController()?.setContentViewController(destViewController)
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
