@@ -144,7 +144,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     fileprivate var needUpdateApperance : Bool = false
     /// The delegate of the side menu
     open weak var delegate : ENSideMenuDelegate?
-    fileprivate(set) var isMenuOpen : Bool = false
+    fileprivate(set) open var isMenuOpen : Bool = false
     /// A Boolean value indicating whether the left swipe is enabled.
     open var allowLeftSwipe : Bool = true
     /// A Boolean value indicating whether the right swipe is enabled.
