@@ -151,6 +151,14 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     open var allowRightSwipe : Bool = true
     open var allowPanGesture : Bool = true
     fileprivate var panRecognizer : UIPanGestureRecognizer?
+    open var isHidden: Bool {
+        get {
+            return sideMenuContainerView.isHidden
+        }
+        set {
+            sideMenuContainerView.isHidden = newValue
+        }
+    }
 
     /**
     Initializes an instance of a `ENSideMenu` object.
