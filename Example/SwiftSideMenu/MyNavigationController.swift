@@ -54,4 +54,8 @@ extension MyNavigationController: ENSideMenuDelegate {
     func sideMenuShouldOpenSideMenu() -> Bool {
         return true
     }
+
+    func sideMenuIsAnimating() {
+        print("sideMenuIsAnimating")
+    }
 }
