@@ -14,6 +14,7 @@ public protocol ENSideMenuDelegate: class {
     func sideMenuShouldOpenSideMenu () -> Bool
     func sideMenuDidOpen()
     func sideMenuDidClose()
+    func sideMenuIsAnimating()
 }
 
 public protocol ENSideMenuProtocol: class {
@@ -334,6 +335,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
                 withDuration: animationDuration,
                 animations: { [weak self] () -> Void in
                     self?.sideMenuContainerView.frame = destFrame
+                    self?.delegate?.sideMenuIsAnimating()
                 },
                 completion: { [weak self] (Bool) -> Void in
                     guard let strongSelf = self else { return }
