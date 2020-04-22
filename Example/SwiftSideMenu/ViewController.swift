@@ -46,5 +46,9 @@ class ViewController: UIViewController, ENSideMenuDelegate {
     func sideMenuDidOpen() {
         print("sideMenuDidOpen")
     }
+
+    func sideMenuIsAnimating() {
+        print("sideMenuIsAnimating")
+    }
 }
 

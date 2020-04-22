@@ -14,6 +14,7 @@ public protocol ENSideMenuDelegate: class {
     func sideMenuShouldOpenSideMenu () -> Bool
     func sideMenuDidOpen()
     func sideMenuDidClose()
+    func sideMenuIsAnimating()
 }
 
 public protocol ENSideMenuProtocol: class {
@@ -143,13 +144,21 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     fileprivate var needUpdateApperance : Bool = false
     /// The delegate of the side menu
     open weak var delegate : ENSideMenuDelegate?
-    fileprivate(set) var isMenuOpen : Bool = false
+    fileprivate(set) open var isMenuOpen : Bool = false
     /// A Boolean value indicating whether the left swipe is enabled.
     open var allowLeftSwipe : Bool = true
     /// A Boolean value indicating whether the right swipe is enabled.
     open var allowRightSwipe : Bool = true
     open var allowPanGesture : Bool = true
     fileprivate var panRecognizer : UIPanGestureRecognizer?
+    open var isHidden: Bool {
+        get {
+            return sideMenuContainerView.isHidden
+        }
+        set {
+            sideMenuContainerView.isHidden = newValue
+        }
+    }
 
     /**
     Initializes an instance of a `ENSideMenu` object.
@@ -334,6 +343,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
                 withDuration: animationDuration,
                 animations: { [weak self] () -> Void in
                     self?.sideMenuContainerView.frame = destFrame
+                    self?.delegate?.sideMenuIsAnimating()
                 },
                 completion: { [weak self] (Bool) -> Void in
                     guard let strongSelf = self else { return }

@@ -37,4 +37,7 @@ class ViewController2: UIViewController, ENSideMenuDelegate {
         return true
     }
 
+    func sideMenuIsAnimating() {
+        print("sideMenuIsAnimating")
+    }
 }
